@@ -24,13 +24,12 @@
                             <th>TIME CREATED</th>
                             <th>TIME MODIFIED</th>
                             <th>STATUS</th>
-                            <th>AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php 
                             foreach($articles as $key => $article) : 
-                                $key += 1;
+                                $key = $offset + $key + 1;
                         ?>
                             <tr>
                                 <td><?php echo $key ?></td>
@@ -44,6 +43,7 @@
                         <?php endforeach ?>
                     </tbody>
                 </table>
+                <?php echo $pager->links('article', 'pagination') ?>
             </div>
         </div>
     </div>
