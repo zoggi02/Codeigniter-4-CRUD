@@ -15,6 +15,16 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
+
+                <?php if(!empty(session()->getFlashdata('message'))) : ?>
+
+                <div class="alert alert-success">
+                    <?php echo session()->getFlashdata('message');?>
+                </div>
+                    
+                <?php endif ?>
+
+                <a href="<?php echo base_url('create') ?>" class="btn btn-md btn-success mb-3"><i class="fa-solid fa-plus"></i> TAMBAH DATA</a>
                 <table class="table table-secondary table-striped table-hover">
                     <thead class="thead-dark">
                         <tr>
@@ -24,6 +34,7 @@
                             <th>TIME CREATED</th>
                             <th>TIME MODIFIED</th>
                             <th>STATUS</th>
+                            <th>AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +49,10 @@
                                 <td><?php echo $article['article_created'] ?></td>
                                 <td><?php echo $article['article_modified']  ?: '-'?></td>
                                 <td><?php echo $article['article_status'] ?></td>
+                                <td >
+                                    <a href="<?php echo base_url('edit/'.$article['article_id']) ?>" class="btn btn-sm btn-primary"><i class="fa-solid fa-pencil " aria-hidden="true"></i> UPDATE</a>
+                                    <a href="<?php echo base_url('delete/'.$article['article_id']) ?>" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash " aria-hidden="true"></i> HAPUS</a>
+                                </td>
                             </tr>
 
                         <?php endforeach ?>
